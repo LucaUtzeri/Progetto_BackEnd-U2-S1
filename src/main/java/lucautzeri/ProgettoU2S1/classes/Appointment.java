@@ -1,5 +1,6 @@
 package lucautzeri.ProgettoU2S1.classes;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,9 +12,17 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @ToString
+@Entity
+@Table(name = "appointments")
 public class Appointment {
+
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private long id;
+    @ManyToOne
     private User user;
     private LocalDate startDate;
+    @ManyToOne
     private Workstation workstation;
 
     public Appointment(User user, LocalDate startDate, Workstation workstation) {
